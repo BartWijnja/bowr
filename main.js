@@ -1,52 +1,7 @@
-// ── COUNTDOWN TIMER ──
-(function () {
-  // 6 september 2026, 09:00 CEST (Amsterdam) = 07:00 UTC
-  const target = new Date('2026-09-06T07:00:00Z');
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
-  function tick() {
-    const elDays  = document.getElementById('cd-days');
-    const elHours = document.getElementById('cd-hours');
-    const elMins  = document.getElementById('cd-mins');
-    const elSecs  = document.getElementById('cd-secs');
-    if (!elDays || !elHours || !elMins || !elSecs) return;
-
-    const diff = target - Date.now();
-    if (diff <= 0) {
-      elDays.textContent = elHours.textContent = elMins.textContent = elSecs.textContent = '00';
-      return;
-    }
-    elDays.textContent  = pad(Math.floor(diff / 86400000));
-    elHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
-    elMins.textContent  = pad(Math.floor((diff % 3600000)  / 60000));
-    elSecs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
-  }
-
-  tick();
-  setInterval(tick, 1000);
-})();
-
-
 function selectDistance(card) {
   document.querySelectorAll('.dist-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
 }
-
-// ── SPONSOR MARQUEE ──
-(function () {
-  const track = document.getElementById('sponsorTrack');
-  if (!track) return;
-
-  // Duplicate items for seamless infinite loop
-  const origItems = Array.from(track.querySelectorAll('.sponsor-item'));
-  origItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    track.appendChild(clone);
-  });
-})();
-
 
 const mobCta = document.getElementById('mob-cta');
 

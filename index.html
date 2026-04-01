@@ -38,52 +38,98 @@
     <p class="hc-label">Nog tot de start</p>
     <div class="hc-units">
       <div class="hc-unit">
-        <div class="hc-flip"><span id="cd-days">00</span></div>
+        <div class="hc-flip" id="cd-days">158</div>
         <span class="hc-sub">Dagen</span>
       </div>
       <div class="hc-colon">:</div>
       <div class="hc-unit">
-        <div class="hc-flip"><span id="cd-hours">00</span></div>
+        <div class="hc-flip" id="cd-hours">00</div>
         <span class="hc-sub">Uren</span>
       </div>
       <div class="hc-colon">:</div>
       <div class="hc-unit">
-        <div class="hc-flip"><span id="cd-mins">00</span></div>
+        <div class="hc-flip" id="cd-mins">00</div>
         <span class="hc-sub">Min</span>
       </div>
       <div class="hc-colon">:</div>
       <div class="hc-unit">
-        <div class="hc-flip"><span id="cd-secs">00</span></div>
+        <div class="hc-flip" id="cd-secs">00</div>
         <span class="hc-sub">Sec</span>
       </div>
     </div>
     <p class="hc-date">6 september 2026 &nbsp;·&nbsp; 09:00</p>
   </div>
+
+  <script>
+    // Inline so it runs immediately, independent of main.js
+    (function () {
+      var target = new Date('2026-09-06T07:00:00Z'); // 09:00 CEST = 07:00 UTC
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function tick() {
+        var diff = target - Date.now();
+        if (diff < 0) diff = 0;
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        document.getElementById('cd-days').textContent  = pad(d);
+        document.getElementById('cd-hours').textContent = pad(h);
+        document.getElementById('cd-mins').textContent  = pad(m);
+        document.getElementById('cd-secs').textContent  = pad(s);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
 </section>
 
 <!-- DISTANCES -->
 <section class="distances" id="afstanden">
-  <p class="section-label" style="color:var(--teal-light)">Afstanden</p>
-  <h2 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:#fff;margin-top:0.3rem">Kies jouw uitdaging</h2>
+  <div class="distances-header">
+    <p class="section-label" style="color:var(--teal-light)">Afstanden</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:#fff;margin-top:0.4rem;line-height:1.2;">Kies jouw<br>uitdaging</h2>
+  </div>
   <div class="distances-grid">
+
     <div class="dist-card" data-dist="1" onclick="selectDistance(this)">
+      <span class="dist-badge">Beginners</span>
       <div class="dist-num">1<span class="dist-unit">km</span></div>
       <div class="dist-label">Sprint</div>
+      <div class="dist-divider"></div>
       <p class="dist-desc">Ideaal voor beginners en jeugd. Een perfecte eerste kennismaking met open water zwemmen in de prachtige Biesbosch.</p>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in</a>
+      <div class="dist-meta">
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Alle niveaus</span>
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Jeugd welkom</span>
+      </div>
+      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
     </div>
+
     <div class="dist-card" data-dist="2" onclick="selectDistance(this)">
+      <span class="dist-badge">Populair</span>
       <div class="dist-num">2<span class="dist-unit">km</span></div>
       <div class="dist-label">Klassiek</div>
+      <div class="dist-divider"></div>
       <p class="dist-desc">De perfecte afstand voor gevorderde zwemmers. Ervaar het open water op een uitdagend niveau.</p>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in</a>
+      <div class="dist-meta">
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Gevorderd</span>
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>~45 min</span>
+      </div>
+      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
     </div>
+
     <div class="dist-card" data-dist="4" onclick="selectDistance(this)">
+      <span class="dist-badge">Ultiem</span>
       <div class="dist-num">4<span class="dist-unit">km</span></div>
       <div class="dist-label">Ultiem</div>
-      <p class="dist-desc">De meest uitdagende afstand — voor echte open water-enthousiastelingen die de Biesbosch volledig willen ervaren. Verken unieke waterpartijen en geniet van de natuur op zijn mooist.</p>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in</a>
+      <div class="dist-divider"></div>
+      <p class="dist-desc">Voor echte open water-enthousiastelingen. Verken unieke waterpartijen en geniet van de natuur op zijn mooist.</p>
+      <div class="dist-meta">
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Ervaren</span>
+        <span class="dist-meta-item"><span class="dist-meta-dot"></span>~90 min</span>
+      </div>
+      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
     </div>
+
   </div>
 </section>
 
@@ -177,7 +223,8 @@
   <p class="sponsors-sub">Met dank aan onze trouwe partners die dit evenement mogelijk maken</p>
 
   <div class="carousel-viewport">
-    <div class="carousel-track" id="sponsorTrack">
+    <div class="carousel-track">
+      <!-- Original set -->
       <a href="https://www.b-b-z.nl" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2018/03/BBZ-logo2017-FC-smal-1.jpg" alt="BBZ"></a>
       <a href="http://www.adendekker.nl" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2017/05/adendekker-1.jpg" alt="Aden Dekker"></a>
       <a href="https://www.anp-systems.at/nl/" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2022/06/anpsystems.jpg" alt="ANP Systems"></a>
@@ -192,6 +239,21 @@
       <a href="https://easypontons.nl/" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2025/08/EasyPontons.jpg" alt="Easy Pontons"></a>
       <a href="https://concordiadamen.com/nl/" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2019/04/concordiadamen.jpg" alt="Concordia Damen"></a>
       <a href="https://solidsystemsnetherlands.nl/" class="sponsor-item" target="_blank"><img src="https://bowr.nl/wp-content/uploads/2023/08/solidsystems.jpg" alt="Solid Systems"></a>
+      <!-- Duplicate set for seamless loop -->
+      <a href="https://www.b-b-z.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2018/03/BBZ-logo2017-FC-smal-1.jpg" alt=""></a>
+      <a href="http://www.adendekker.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2017/05/adendekker-1.jpg" alt=""></a>
+      <a href="https://www.anp-systems.at/nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2022/06/anpsystems.jpg" alt=""></a>
+      <a href="http://www.aqualabzuid.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2018/04/aqualadzuid.jpg" alt=""></a>
+      <a href="https://www.biesboschmuseumeiland.nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2025/07/biesboschmuseumeiland.jpg" alt=""></a>
+      <a href="http://www.heleon.nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2024/06/heleon.jpg" alt=""></a>
+      <a href="http://www.vdberghenco.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2018/04/vandenberghco-1.jpg" alt=""></a>
+      <a href="http://www.vanderven.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2017/08/vanderven-1.jpg" alt=""></a>
+      <a href="http://www.deklerkbv.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2017/06/deklerk-1.jpg" alt=""></a>
+      <a href="http://www.parcon-werkendam.nl" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2018/04/parconwatersport-1.jpg" alt=""></a>
+      <a href="https://dampack.nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2025/08/dampack.jpg" alt=""></a>
+      <a href="https://easypontons.nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2025/08/EasyPontons.jpg" alt=""></a>
+      <a href="https://concordiadamen.com/nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2019/04/concordiadamen.jpg" alt=""></a>
+      <a href="https://solidsystemsnetherlands.nl/" class="sponsor-item" target="_blank" aria-hidden="true"><img src="https://bowr.nl/wp-content/uploads/2023/08/solidsystems.jpg" alt=""></a>
     </div>
   </div>
 </section>
@@ -235,7 +297,6 @@
           <input type="text" placeholder="Jouw naam" required>
         </div>
         <div class="form-group">
-          <label>E-mail</label>
           <label>E-mail</label>
           <input type="email" placeholder="jouw@email.nl" required>
         </div>
