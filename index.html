@@ -14,7 +14,7 @@
 <nav>
   <a href="#" class="nav-logo">BOWR<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#afstanden">Afstanden</a></li>
+    <li><a href="#over">Afstanden</a></li>
     <li><a href="#over">Over</a></li>
     <li><a href="#nieuws">Nieuws</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
@@ -83,66 +83,72 @@
   </script>
 </section>
 
-<!-- DISTANCES -->
-<section class="distances" id="afstanden">
-  <div class="distances-header">
-    <p class="section-label" style="color:var(--teal-light)">Afstanden</p>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:#fff;margin-top:0.4rem;line-height:1.2;">Kies jouw<br>uitdaging</h2>
-  </div>
-  <div class="distances-grid">
+<!-- OVER + PARCOURS -->
+<section class="about" id="over">
 
-    <div class="dist-card" data-dist="1" onclick="selectDistance(this)">
-      <span class="dist-badge">Beginners</span>
-      <div class="dist-num">1<span class="dist-unit">km</span></div>
-      <div class="dist-label">Sprint</div>
-      <div class="dist-divider"></div>
-      <p class="dist-desc">Ideaal voor beginners en jeugd. Een perfecte eerste kennismaking met open water zwemmen in de prachtige Biesbosch.</p>
-      <div class="dist-meta">
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Alle niveaus</span>
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Jeugd welkom</span>
-      </div>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
-    </div>
-
-    <div class="dist-card" data-dist="2" onclick="selectDistance(this)">
-      <span class="dist-badge">Populair</span>
-      <div class="dist-num">2<span class="dist-unit">km</span></div>
-      <div class="dist-label">Klassiek</div>
-      <div class="dist-divider"></div>
-      <p class="dist-desc">De perfecte afstand voor gevorderde zwemmers. Ervaar het open water op een uitdagend niveau.</p>
-      <div class="dist-meta">
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Gevorderd</span>
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>~45 min</span>
-      </div>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
-    </div>
-
-    <div class="dist-card" data-dist="4" onclick="selectDistance(this)">
-      <span class="dist-badge">Ultiem</span>
-      <div class="dist-num">4<span class="dist-unit">km</span></div>
-      <div class="dist-label">Ultiem</div>
-      <div class="dist-divider"></div>
-      <p class="dist-desc">Voor echte open water-enthousiastelingen. Verken unieke waterpartijen en geniet van de natuur op zijn mooist.</p>
-      <div class="dist-meta">
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>Ervaren</span>
-        <span class="dist-meta-item"><span class="dist-meta-dot"></span>~90 min</span>
-      </div>
-      <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary dist-cta">Schrijf je in →</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- INTRO -->
-<section class="intro" id="over">
-  <div class="intro-text">
+  <!-- Left: intro text -->
+  <div class="about-left">
     <p class="section-label">Over het evenement</p>
-    <h2>Een nieuw hoofdstuk begint</h2>
-    <p>Na 11 edities van de Biesbosch Open Water Race is het tijd voor een frisse aanpak. De competitieve wedstrijden maken plaats voor een inclusieve zwemtocht — voor jong en oud, voor alle niveaus.</p>
-    <p>In samenwerking met <strong>ZwemAnalyse</strong> organiseren we op zondag 7 september 2025 een onvergetelijke ervaring bij het Biesbosch MuseumEiland. Een deel van de opbrengst gaat naar stichting <strong>ALS Nederland</strong> — een organisatie die we als vereniging een warm hart toedragen.</p>
-    <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-primary" style="display:inline-block;margin-top:1.5rem;text-align:center;">Inschrijven via ZwemAnalyse</a>
+    <h2>Zwem de Biesbosch</h2>
+    <p>Na 11 edities wedstrijdzwemmen kiezen we voor een nieuwe aanpak — een open zwemtocht voor iedereen. Samen met <strong>ZwemAnalyse</strong> organiseren we op 6 september 2026 een onvergetelijke ochtend in de Biesbosch.</p>
+    <p>Een deel van de opbrengst gaat naar <strong>ALS Nederland</strong> — een organisatie die we een warm hart toedragen.</p>
   </div>
-  <div class="intro-visual"></div>
+
+  <!-- Right: distance tabs + route map -->
+  <div class="about-right">
+    <div class="dist-tab-btns">
+      <button class="dist-tab-btn active" data-dist="1" onclick="switchDist(this)">1 km</button>
+      <button class="dist-tab-btn" data-dist="2" onclick="switchDist(this)">2 km</button>
+      <button class="dist-tab-btn" data-dist="4" onclick="switchDist(this)">4 km</button>
+    </div>
+
+    <div class="dist-tab-panels">
+
+      <div class="dist-tab-panel active" data-dist="1">
+        <div class="dist-tab-meta">
+          <span class="dist-tab-tag">Sprint &middot; Beginners</span>
+          <span class="dist-tab-time">~25 min</span>
+        </div>
+        <p class="dist-tab-desc">De perfecte start voor iedereen die voor het eerst open water wil zwemmen. Jeugd welkom, alle niveaus.</p>
+        <div class="dist-tab-route">
+          <img src="bowr-route.png" alt="Parcours 1km" class="dist-tab-route-img">
+          <div class="dist-tab-route-overlay">
+            <span class="dist-route-badge">Start → 1 km keerpunt → Finish</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dist-tab-panel" data-dist="2">
+        <div class="dist-tab-meta">
+          <span class="dist-tab-tag">Klassiek &middot; Gevorderd</span>
+          <span class="dist-tab-time">~45 min</span>
+        </div>
+        <p class="dist-tab-desc">De meest gekozen afstand. Uitdagend, maar goed te doen voor zwemmers met open water-ervaring.</p>
+        <div class="dist-tab-route">
+          <img src="bowr-route.png" alt="Parcours 2km" class="dist-tab-route-img">
+          <div class="dist-tab-route-overlay">
+            <span class="dist-route-badge">Start → 2 km keerpunt → Finish</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dist-tab-panel" data-dist="4">
+        <div class="dist-tab-meta">
+          <span class="dist-tab-tag">Ultiem &middot; Ervaren</span>
+          <span class="dist-tab-time">~90 min</span>
+        </div>
+        <p class="dist-tab-desc">De volledige Biesbosch-ervaring. Vier keer de rivier over, langs unieke waterpartijen en ongerepte natuur.</p>
+        <div class="dist-tab-route">
+          <img src="bowr-route.png" alt="Parcours 4km" class="dist-tab-route-img">
+          <div class="dist-tab-route-overlay">
+            <span class="dist-route-badge">Start → 4 km keerpunt → Finish</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 
 <!-- NEWS -->
@@ -320,4 +326,13 @@
   <ul class="footer-links">
     <li><a href="#">Home</a></li>
     <li><a href="#">Algemeen</a></li>
-    <li><a hre
+    <li><a href="#">Parcours</a></li>
+    <li><a href="#">Privacybeleid</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">©2026 Biesbosch Open Water Challenge</span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,6 +1,14 @@
-function selectDistance(card) {
-  document.querySelectorAll('.dist-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
+// ── DISTANCE TAB SWITCHER ──
+function switchDist(btn) {
+  const dist = btn.dataset.dist;
+
+  // Update buttons
+  document.querySelectorAll('.dist-tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Update panels
+  document.querySelectorAll('.dist-tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.dist-tab-panel[data-dist="${dist}"]`).classList.add('active');
 }
 
 const mobCta = document.getElementById('mob-cta');
