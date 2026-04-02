@@ -1,14 +1,24 @@
 // ── DISTANCE TAB SWITCHER ──
+const badgeLabels = {
+  '1': 'Start → 1 km keerpunt → Finish',
+  '2': 'Start → 2 km keerpunt → Finish',
+  '4': 'Start → 4 km keerpunt → Finish'
+};
+
 function switchDist(btn) {
   const dist = btn.dataset.dist;
 
-  // Update buttons
   document.querySelectorAll('.dist-tab-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
-  // Update panels
   document.querySelectorAll('.dist-tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelector(`.dist-tab-panel[data-dist="${dist}"]`).classList.add('active');
+
+  const wrap = document.getElementById('distMapWrap');
+  if (wrap) wrap.dataset.active = dist;
+
+  const badge = document.getElementById('distRouteBadge');
+  if (badge) badge.textContent = badgeLabels[dist] || '';
 }
 
 const mobCta = document.getElementById('mob-cta');

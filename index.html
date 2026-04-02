@@ -14,7 +14,6 @@
 <nav>
   <a href="#" class="nav-logo">BOWR<span>.</span></a>
   <ul class="nav-links">
-    <li><a href="#over">Afstanden</a></li>
     <li><a href="#over">Over</a></li>
     <li><a href="#nieuws">Nieuws</a></li>
     <li><a href="#sponsors">Sponsors</a></li>
@@ -103,50 +102,85 @@
     </div>
 
     <div class="dist-tab-panels">
-
       <div class="dist-tab-panel active" data-dist="1">
         <div class="dist-tab-meta">
           <span class="dist-tab-tag">Sprint &middot; Beginners</span>
           <span class="dist-tab-time">~25 min</span>
         </div>
         <p class="dist-tab-desc">De perfecte start voor iedereen die voor het eerst open water wil zwemmen. Jeugd welkom, alle niveaus.</p>
-        <div class="dist-tab-route">
-          <img src="bowr-route.png" alt="Parcours 1km" class="dist-tab-route-img">
-          <div class="dist-tab-route-overlay">
-            <span class="dist-route-badge">Start → 1 km keerpunt → Finish</span>
-          </div>
-        </div>
       </div>
-
       <div class="dist-tab-panel" data-dist="2">
         <div class="dist-tab-meta">
           <span class="dist-tab-tag">Klassiek &middot; Gevorderd</span>
           <span class="dist-tab-time">~45 min</span>
         </div>
         <p class="dist-tab-desc">De meest gekozen afstand. Uitdagend, maar goed te doen voor zwemmers met open water-ervaring.</p>
-        <div class="dist-tab-route">
-          <img src="bowr-route.png" alt="Parcours 2km" class="dist-tab-route-img">
-          <div class="dist-tab-route-overlay">
-            <span class="dist-route-badge">Start → 2 km keerpunt → Finish</span>
-          </div>
-        </div>
       </div>
-
       <div class="dist-tab-panel" data-dist="4">
         <div class="dist-tab-meta">
           <span class="dist-tab-tag">Ultiem &middot; Ervaren</span>
           <span class="dist-tab-time">~90 min</span>
         </div>
         <p class="dist-tab-desc">De volledige Biesbosch-ervaring. Vier keer de rivier over, langs unieke waterpartijen en ongerepte natuur.</p>
-        <div class="dist-tab-route">
-          <img src="bowr-route.png" alt="Parcours 4km" class="dist-tab-route-img">
-          <div class="dist-tab-route-overlay">
-            <span class="dist-route-badge">Start → 4 km keerpunt → Finish</span>
-          </div>
-        </div>
       </div>
-
     </div>
+
+    <!-- Shared route map — markers light up per selected distance -->
+    <div class="dist-map-wrap" id="distMapWrap" data-active="1">
+      <img src="bowr-route.png" alt="Parcours kaart" class="dist-map-img">
+
+      <!--
+        SVG viewBox matches the actual image dimensions: 1024×637 px
+        Marker centroids measured pixel-precisely from the source image:
+          Start/Finish : (725, 158)
+          1km keerpunt : (552, 218)
+          2km keerpunt : (387, 326)
+          4km keerpunt : (86,  535)
+      -->
+      <svg class="dist-map-markers" viewBox="0 0 1024 637" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+
+        <!-- Start / Finish — always lit -->
+        <g class="map-marker map-marker-start">
+          <circle cx="725" cy="158" r="14" fill="var(--teal)" opacity="0.92"/>
+          <circle cx="725" cy="158" r="14" fill="none" stroke="white" stroke-width="2.5" opacity="0.7"/>
+          <circle cx="725" cy="158" r="26" fill="none" stroke="var(--teal-light)" stroke-width="2" class="map-ping"/>
+          <text x="744" y="153" font-size="16" fill="white" font-family="DM Sans, sans-serif" font-weight="700" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.8))">Start / Finish</text>
+        </g>
+
+        <!-- 1 km keerpunt -->
+        <g class="map-marker map-marker-1">
+          <circle cx="552" cy="218" r="12" fill="var(--teal-light)" opacity="0.35" class="map-marker-bg"/>
+          <circle cx="552" cy="218" r="8" fill="var(--teal-light)" class="map-marker-dot"/>
+          <circle cx="552" cy="218" r="8" fill="none" stroke="white" stroke-width="2" class="map-marker-ring"/>
+          <circle cx="552" cy="218" r="22" fill="none" stroke="var(--teal-light)" stroke-width="2.5" class="map-ping"/>
+          <text x="568" y="213" font-size="14" fill="white" font-family="DM Sans, sans-serif" font-weight="600" class="map-marker-label" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.9))">1 km keerpunt</text>
+        </g>
+
+        <!-- 2 km keerpunt -->
+        <g class="map-marker map-marker-2">
+          <circle cx="387" cy="326" r="12" fill="#f59e0b" opacity="0.35" class="map-marker-bg"/>
+          <circle cx="387" cy="326" r="8" fill="#f59e0b" class="map-marker-dot"/>
+          <circle cx="387" cy="326" r="8" fill="none" stroke="white" stroke-width="2" class="map-marker-ring"/>
+          <circle cx="387" cy="326" r="22" fill="none" stroke="#f59e0b" stroke-width="2.5" class="map-ping"/>
+          <text x="403" y="321" font-size="14" fill="white" font-family="DM Sans, sans-serif" font-weight="600" class="map-marker-label" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.9))">2 km keerpunt</text>
+        </g>
+
+        <!-- 4 km keerpunt -->
+        <g class="map-marker map-marker-4">
+          <circle cx="86" cy="535" r="12" fill="#f87171" opacity="0.35" class="map-marker-bg"/>
+          <circle cx="86" cy="535" r="8" fill="#f87171" class="map-marker-dot"/>
+          <circle cx="86" cy="535" r="8" fill="none" stroke="white" stroke-width="2" class="map-marker-ring"/>
+          <circle cx="86" cy="535" r="22" fill="none" stroke="#f87171" stroke-width="2.5" class="map-ping"/>
+          <text x="102" y="530" font-size="14" fill="white" font-family="DM Sans, sans-serif" font-weight="600" class="map-marker-label" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.9))">4 km keerpunt</text>
+        </g>
+
+      </svg>
+
+      <div class="dist-map-badge-wrap">
+        <span class="dist-route-badge" id="distRouteBadge">Start → 1 km keerpunt → Finish</span>
+      </div>
+    </div>
+
   </div>
 
 </section>
@@ -216,7 +250,7 @@
       </div>
     </div>
     <div class="als-banner-actions">
-      <a href="https://bowr.nl/nieuws/2025/08/19/doneer-aan-als-nederland/" class="btn-als">Doneer nu aan ALS Nederland</a>
+      <a href="https://zwemmen.alsacties.nl/fundraisers/biesbosch-open-water-challenge-biesbosch" class="btn-als">Doneer nu aan ALS Nederland</a>
       <a href="https://www.zwemanalyse.nl/aanbod/zwemtocht-biesbosch/" class="btn-als-outline">Schrijf je in →</a>
     </div>
   </div>

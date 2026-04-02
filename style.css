@@ -98,7 +98,7 @@ nav {
   max-width: 760px;
   opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
 }
-.hero h1 em { font-style: italic; color: var(--teal-light); }
+.hero h1 em { font-style: italic; color: var(--teal-light); padding-left: 1.5rem }
 .hero-sub {
   margin-top: 1.6rem;
   font-size: 1.05rem;
@@ -268,10 +268,10 @@ nav {
 
 .dist-tab-btns {
   display: flex;
+  border: 1.5px solid rgba(10,22,40,0.12);
   border-radius: 0.6rem;
   overflow: hidden;
   width: fit-content;
-  background: rgba(10,22,40,0.06);
 }
 .dist-tab-btn {
   padding: 0.55rem 1.6rem;
@@ -315,35 +315,99 @@ nav {
   line-height: 1.65;
 }
 
-.dist-tab-route {
+.dist-tab-route { display: none; }
+
+/* ── SHARED ROUTE MAP ── */
+.dist-map-wrap {
   position: relative;
   border-radius: 0.75rem;
   overflow: hidden;
-  aspect-ratio: 16/7;
+  /* Native image ratio: 1024×637 */
+  aspect-ratio: 1024 / 637;
+  background: #1a3a2a;
 }
-.dist-tab-route-img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
+
+.dist-map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* fill exactly — no cropping, matches SVG viewBox */
   display: block;
-  filter: saturate(0.7) brightness(0.82) contrast(1.1);
+  filter: saturate(0.8) brightness(0.88) contrast(1.05);
 }
-.dist-tab-route-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(10,22,40,0.1) 0%, transparent 40%, rgba(10,22,40,0.5) 100%);
-  display: flex; align-items: flex-end;
-  padding: 0.9rem 1rem;
+
+.dist-map-markers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
+
+/* ── MARKER BASE STATE (inactive) ── */
+.map-marker-bg   { opacity: 0.2; transition: opacity 0.35s; }
+.map-marker-dot  { opacity: 0.4; transition: opacity 0.35s, r 0.35s; }
+.map-marker-ring { opacity: 0.3; transition: opacity 0.35s; }
+.map-marker-label { opacity: 0.4; transition: opacity 0.35s; }
+.map-ping { opacity: 0; }
+
+/* ── ACTIVE MARKER STATE (driven by data-active on wrapper) ── */
+.dist-map-wrap[data-active="1"] .map-marker-1 .map-marker-bg   { opacity: 0.5; }
+.dist-map-wrap[data-active="1"] .map-marker-1 .map-marker-dot  { opacity: 1; }
+.dist-map-wrap[data-active="1"] .map-marker-1 .map-marker-ring { opacity: 1; }
+.dist-map-wrap[data-active="1"] .map-marker-1 .map-marker-label { opacity: 1; }
+.dist-map-wrap[data-active="1"] .map-marker-1 .map-ping { animation: map-ping 1.8s ease-out infinite; }
+
+.dist-map-wrap[data-active="2"] .map-marker-2 .map-marker-bg   { opacity: 0.5; }
+.dist-map-wrap[data-active="2"] .map-marker-2 .map-marker-dot  { opacity: 1; }
+.dist-map-wrap[data-active="2"] .map-marker-2 .map-marker-ring { opacity: 1; }
+.dist-map-wrap[data-active="2"] .map-marker-2 .map-marker-label { opacity: 1; }
+.dist-map-wrap[data-active="2"] .map-marker-2 .map-ping { animation: map-ping-amber 1.8s ease-out infinite; }
+
+.dist-map-wrap[data-active="4"] .map-marker-4 .map-marker-bg   { opacity: 0.5; }
+.dist-map-wrap[data-active="4"] .map-marker-4 .map-marker-dot  { opacity: 1; }
+.dist-map-wrap[data-active="4"] .map-marker-4 .map-marker-ring { opacity: 1; }
+.dist-map-wrap[data-active="4"] .map-marker-4 .map-marker-label { opacity: 1; }
+.dist-map-wrap[data-active="4"] .map-marker-4 .map-ping { animation: map-ping-red 1.8s ease-out infinite; }
+
+@keyframes map-ping {
+  0%   { r: 14; opacity: 0.8; }
+  100% { r: 36; opacity: 0; }
+}
+@keyframes map-ping-amber {
+  0%   { r: 14; opacity: 0.8; }
+  100% { r: 36; opacity: 0; }
+}
+@keyframes map-ping-red {
+  0%   { r: 14; opacity: 0.8; }
+  100% { r: 36; opacity: 0; }
+}
+
+/* Start/Finish always pings */
+.map-marker-start .map-ping {
+  animation: map-ping-start 2.4s ease-out infinite;
+}
+@keyframes map-ping-start {
+  0%   { r: 18; opacity: 0.6; }
+  100% { r: 40; opacity: 0; }
+}
+
+/* Badge at bottom of map */
 .dist-route-badge {
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  background: rgba(10,22,40,0.55);
+  color: rgba(255,255,255,0.85);
+  background: rgba(10,22,40,0.6);
   backdrop-filter: blur(6px);
   padding: 0.3rem 0.8rem;
   border-radius: 2rem;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.dist-map-badge-wrap {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 1rem;
 }
 
 /* ── NEWS ── */
@@ -627,7 +691,7 @@ footer {
   .hero-countdown { display: none; }
 
   .about { grid-template-columns: 1fr; }
-  .about-left { padding: 4rem 1.5rem; }
+  .about-left { padding: 4rem 1.5rem; border-right: none; border-bottom: 1px solid rgba(10,22,40,0.07); }
   .about-right { padding: 3rem 1.5rem; }
   .dist-tab-btn { padding: 0.5rem 1.1rem; }
 
